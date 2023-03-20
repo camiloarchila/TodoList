@@ -22,6 +22,10 @@ export const TaskList = (prop) => {
     }
 
     const handleDeleteCick = (name) =>{
+        let taskschecked = [...tasks];
+        taskschecked = taskschecked.filter(task => name != task);
+        setTasks(taskschecked)
+        localStorage.setItem("Checked", JSON.stringify(taskschecked))
         onDeletetask(name);
     }
 
