@@ -24,6 +24,7 @@ function App() {
   const handleDeleteItem = (itemdeleted) => {
       let tasks = newtasks.filter(item => item.name != itemdeleted);
       setnewtasks(tasks);
+      localStorage.setItem("TasksList", JSON.stringify(tasks));
   }
 
   const handleDeleteAll = () =>{
