@@ -28,6 +28,7 @@ function App() {
   }
 
   const handleDeleteAll = () =>{
+    localStorage.clear();
     setnewtasks([]);
   }
 

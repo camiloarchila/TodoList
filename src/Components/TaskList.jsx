@@ -34,7 +34,7 @@ export const TaskList = (prop) => {
         const datatasksChecked = JSON.parse(datastored);
         if(datatasksChecked != null){
         setTasks(datatasksChecked);
-    }
+        }
     }, [])
 
     return <ul>
