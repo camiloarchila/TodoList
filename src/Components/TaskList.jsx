@@ -3,7 +3,7 @@ import { TaskCard } from "./TaskCard"
 
 export const TaskList = (prop) => {
 
-    const {list} = prop;
+    const {list, onDeletetask} = prop;
     const [tasks, setTasks] = useState([]);
 
     const handleCheckClick = (name) =>{
@@ -21,6 +21,10 @@ export const TaskList = (prop) => {
         localStorage.setItem("Checked", JSON.stringify(taskschecked))
     }
 
+    const handleDeleteCick = (name) =>{
+        onDeletetask(name);
+    }
+
     useEffect(() => {
         const datastored = localStorage.getItem("Checked");
         const datatasksChecked = JSON.parse(datastored);
@@ -30,10 +34,8 @@ export const TaskList = (prop) => {
     }, [])
 
     return <ul>
-        <input type="text" id="inputtask" placeholder="Add your new todo"></input> 
-        <button>+</button>
         {
-            list.map((task) => <TaskCard name={task.name} onCheckClick={handleCheckClick}  isClicked={tasks.includes(task.name)}/>)
+            list.map((task) => <TaskCard name={task.name} onCheckClick={handleCheckClick}  onClickDelete={handleDeleteCick} isClicked={tasks.includes(task.name)}/>)
         }
     </ul>
 }

@@ -1,15 +1,20 @@
 export const TaskCard = (props) => {
 
-    const {name, onCheckClick, isClicked} =props;
+    const {name, onCheckClick, isClicked, onClickDelete} =props;
 
     function handleClick(){
         onCheckClick(name);
     }
 
+    function handleDeleteClick(){
+        onClickDelete(name);
+    }
+
     return <article>
                 <label>
-                <input type="checkbox" onChange={handleClick}/>
+                <input defaultChecked={isClicked} type="checkbox" onChange={handleClick} />
                 {isClicked ? <u>{name}</u> : name }
                 </label>
+                <button onClick={handleDeleteClick}>Delete</button>
             </article>
 }
