@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import Header from "./Components/header"
 import { TaskList } from "./Components/TaskList"
+import { useCreateTask } from "./hooks/useTaskList"
 
 
 function App() {
 
-  const [newtasks, setnewtasks] = useState([]);
+  const [newtasks, addTask, deleteTask, deleteAll] = useCreateTask([]);
   const [value, setvalue] = useState('');
 
   const handlechange = (event) => {
@@ -13,32 +14,18 @@ function App() {
   }
 
   const handleClickButton = (event) => {
-    let taskslist = [...newtasks];
     event.preventDefault();
-    taskslist = [...newtasks, {name: value}];
-    localStorage.setItem("TasksList", JSON.stringify(taskslist));
-    setnewtasks(taskslist);
+    addTask(value);
     setvalue('');
   }
 
   const handleDeleteItem = (itemdeleted) => {
-      let tasks = newtasks.filter(item => item.name != itemdeleted);
-      setnewtasks(tasks);
-      localStorage.setItem("TasksList", JSON.stringify(tasks));
+      deleteTask(itemdeleted);
   }
 
   const handleDeleteAll = () =>{
-    localStorage.clear();
-    setnewtasks([]);
+    deleteAll();
   }
-
-  useEffect(()=>{
-    let data = localStorage.getItem("TasksList");
-    let datalist = JSON.parse(data);
-    if(datalist != null){
-    setnewtasks(datalist);
-  }
-  }, [])
 
   return (
     <div >
