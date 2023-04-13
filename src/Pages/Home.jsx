@@ -1,3 +1,14 @@
+import { Text } from "@chakra-ui/react"
+
 export function Home(){
-    return <section>Bienvenido al Home de React Task List</section>
+    return <Text
+    ml={2}
+    textTransform="uppercase"
+    fontSize="large"
+    fontWeight="bold"
+    color="#319795"
+  >
+    Bienvenido al Home de React Task List
+  </Text>
+    
 }

@@ -1,19 +1,18 @@
 import { Link } from "react-router-dom";
+import { Flex, ListItem, UnorderedList } from "@chakra-ui/react";
 
 export function Menu() {
   return (
-    <nav>
-      <ul>
-        <li>
+      <UnorderedList ml="30">
+        <ListItem>
           <Link to="/">Home</Link>
-        </li>
-        <li>
+        </ListItem>
+        <ListItem>
           <Link to="/AboutUs">About Us</Link>
-        </li>
-        <li>
+        </ListItem>
+        <ListItem>
           <Link to="/App">Task List</Link>
-        </li>
-      </ul>
-    </nav>
+        </ListItem>
+      </UnorderedList>
   );
 }
