@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Header from "./Components/header"
 import { TaskList } from "./Components/TaskList"
 import { useCreateTask } from "./hooks/useTaskList"
+import {Flex, Button, FormControl, FormLabel, Input, FormHelperText} from "@chakra-ui/react";
 
 
 function App() {
@@ -44,26 +45,22 @@ function App() {
   const isValid = Object.keys(formValidation).every(key=>formValidation[key]==="")
 
   return (
-    <div >
-      <Header/>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Task
-            <input type="text" id="inputtask" value={value} placeholder="Add your new todo" onChange={handlechange}></input> 
-          </label>
-          <span role = "alert" style={{color:"red"}}>{formValidation.task}</span>
-        </div>
-        <div>
-          <label> Description
-            <input type= "text" value = {description} onChange={handleDescriptionChange} ></input>
-          </label>
-          <span role = "alert" style={{color:"red"}}>{formValidation.description}</span>
-        </div>
-        <button disabled={!isValid} type="submit">Agregar Tarea</button>
-      </form>
+    <Flex  alignItems="center" justifyContent="center" minHeight="auto" height="50%" flexDirection="column" className="App">
+      <Header />
+        <FormControl isInvalid={formValidation.task} width="50%">
+            <FormLabel color="#4FD1C5">Tarea</FormLabel>
+            <Input value = {value} onChange={handlechange}/>
+            <FormHelperText color={"red"}>{formValidation.task}</FormHelperText>
+        </FormControl>
+        <FormControl isInvalid={formValidation.description} width="50%">
+            <FormLabel color="#4FD1C5">Descripcion</FormLabel>
+            <Input value = {description} onChange={handleDescriptionChange}/>
+            <FormHelperText color={"red"}>{formValidation.description}</FormHelperText>
+        </FormControl>
+        <Button mb="30" colorScheme="teal" onClick={handleSubmit} isDisabled={!isValid}>Agregar Tarea</Button>
       <TaskList list={newtasks} onDeletetask={handleDeleteItem}/> 
-      <button onClick={handleDeleteAll}>Delete All</button> 
-    </div>
+      <Button mt="50" colorScheme="teal" onClick={handleDeleteAll}>Delete All</Button> 
+    </Flex>
   )
 }
 

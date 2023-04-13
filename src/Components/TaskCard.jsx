@@ -1,3 +1,5 @@
+import { Button, Checkbox, FormLabel} from "@chakra-ui/react";
+
 export const TaskCard = (props) => {
 
     const {name, onCheckClick, isClicked, onClickDelete} =props;
@@ -11,10 +13,12 @@ export const TaskCard = (props) => {
     }
 
     return <article>
-                <label>
-                <input defaultChecked={isClicked} type="checkbox" onChange={handleClick} />
+                <FormLabel>
+                <Checkbox defaultChecked={isClicked} type="checkbox" onChange={handleClick}>
                 {isClicked ? <u>{name}</u> : name }
-                </label>
-                <button onClick={handleDeleteClick}>Delete</button>
+                </Checkbox>
+                
+                <Button  size="sm" ml="15" color="#4FD1C5" onClick={handleDeleteClick}>Delete</Button>
+                </FormLabel>
             </article>
 }
