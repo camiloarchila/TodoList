@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Header from "./Components/header"
 import { TaskList } from "./Components/TaskList"
 import { useCreateTask } from "./hooks/useTaskList"
-import {Flex, Button, FormControl, FormLabel, Input, FormHelperText} from "@chakra-ui/react";
+import {Flex, Button, FormControl, FormLabel, Input, FormHelperText, useColorMode} from "@chakra-ui/react";
 
 
 function App() {
@@ -44,6 +44,8 @@ function App() {
 
   const isValid = Object.keys(formValidation).every(key=>formValidation[key]==="")
 
+  const {toggleColorMode} = useColorMode();
+
   return (
     <Flex  alignItems="center" justifyContent="center" minHeight="auto" height="50%" flexDirection="column" className="App">
       <Header />
@@ -60,7 +62,9 @@ function App() {
         <Button mb="30" colorScheme="teal" onClick={handleSubmit} isDisabled={!isValid}>Agregar Tarea</Button>
       <TaskList list={newtasks} onDeletetask={handleDeleteItem}/> 
       <Button mt="50" colorScheme="teal" onClick={handleDeleteAll}>Delete All</Button> 
+      <Button mt={6} onClick={toggleColorMode}>Toggle Color Mode</Button>
     </Flex>
+    
   )
 }
 
